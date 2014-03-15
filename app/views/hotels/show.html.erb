@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @hotel.title %>
+</p>
+
+<p>
+  <strong>Breakfast included:</strong>
+  <%= @hotel.breakfast_included %>
+</p>
+
+<p>
+  <strong>Room description:</strong>
+  <%= @hotel.room_description %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @hotel.photo %>
+</p>
+
+<p>
+  <strong>Price for room:</strong>
+  <%= @hotel.price_for_room %>
+</p>
+
+<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+<%= link_to 'Back', hotels_path %>
