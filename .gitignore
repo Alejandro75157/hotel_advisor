@@ -17,7 +17,7 @@
 .idea*
 
 *.iml
-
+public/system
 out/
 
 bin/

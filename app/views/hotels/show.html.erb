@@ -16,14 +16,15 @@
 </p>
 
 <p>
-  <strong>Photo:</strong>
-  <%= @hotel.photo %>
+  <strong>Image:</strong>
+  <%= image_tag @hotel.image.url(:small) %>
 </p>
 
 <p>
   <strong>Price for room:</strong>
   <%= @hotel.price_for_room %>
 </p>
+
 
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>
