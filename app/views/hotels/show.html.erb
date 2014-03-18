@@ -28,3 +28,24 @@
 
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>
+
+<h2>Comments</h2>
+<div id="comments">
+  <%= render partial: "comment", collection: @hotel.comments, as: :comment %>
+</div>
+
+<% if user_signed_in? %>
+    <%= form_for [@hotel, Comment.new] do |f| %>
+
+        <div class="field">
+          <%= f.label :body, "New comment" %><br>
+          <%= f.text_area :body %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Add comment" %>
+        </div>
+    <% end %>
+<% else %>
+    <p>Please sign in or sign up to be able leave comments here</p>
+<% end %>
+
