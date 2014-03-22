@@ -35,7 +35,7 @@ group :production do
   gem 'thin'
 end
 
-gem 'haml'
+gem 'haml-rails'
 gem "less-rails"
 gem 'devise'
 gem 'letsrate'

@@ -1,0 +1,4 @@
+%p
+  %strong= comment.user_id
+  = comment.body
+  = link_to 'Destroy', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,29 @@
+= form_for(@hotel , :html => { :multipart => true}) do |f|
+  - if @hotel.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@hotel.errors.count, "error")
+        prohibited this hotel from being saved:
+      %ul
+        - @hotel.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :breakfast_included
+    %br/
+    = f.check_box :breakfast_included
+  .field
+    = f.label :room_description
+    %br/
+    = f.text_area :room_description
+  .field
+    = f.label :image
+    %br/
+    = f.file_field :image
+  .field
+    = f.label :price_for_room
+    %br/
+    = f.number_field :price_for_room

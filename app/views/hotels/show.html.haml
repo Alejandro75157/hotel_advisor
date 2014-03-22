@@ -1,0 +1,37 @@
+%p#notice= notice
+%p.title
+  = @hotel.title
+%img.item_img.span7{:src => @hotel.image}/
+.base_info.span3
+  %p
+    %strong Breakfast included:
+    = @hotel.breakfast_included
+  %p
+    %strong Price for room:
+    = @hotel.price_for_room
+  #addresses
+    %h4 Addresses
+    = render partial: "address", collection: @hotel.addresses, as: :address
+.description.span4
+  %p
+    %strong Room description:
+    = @hotel.room_description
+%br/
+%br/
+.buttons
+  %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
+  %a.btn{:href => "/"} Back
+%hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
+%h2 Comments
+#comments
+  = render partial: "comment", collection: @hotel.comments, as: :comment
+- if user_signed_in?
+  = form_for [@hotel, Comment.new] do |f|
+    .field
+      = f.label :body, "New comment"
+      %br/
+      = f.text_area :body
+    .actions
+      = f.submit "Add comment"
+- else
+  %p Please sign in or sign up to be able leave comments here
