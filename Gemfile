@@ -5,6 +5,8 @@ gem 'rails', '4.0.4'
 
 gem "paperclip", "~> 4.1"
 
+
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -34,6 +36,10 @@ group :doc do
   gem 'sdoc', require: false
 
 gem 'devise'
+
+gem 'letsrate'
+
+
 end
 
 # Use ActiveModel has_secure_password

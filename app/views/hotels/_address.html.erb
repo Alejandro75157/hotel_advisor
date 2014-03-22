@@ -1,0 +1,7 @@
+<p>
+  <strong>Country:</strong><%= address.country %>
+  <strong>State:</strong><%= address.state %>
+  <strong>City:</strong><%= address.city %>
+  <strong>Street:</strong><%= address.street %>
+  <%= link_to 'Destroy', hotel_address_path(@hotel, address), method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

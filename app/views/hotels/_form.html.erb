@@ -34,6 +34,36 @@
     <%= f.number_field :price_for_room %>
   </div>
   <div class="actions">
+
+    <div id="addresses">
+      <h4>Addresses</h4>
+      <%= render partial: "address", collection: @hotel.addresses, as: :address %>
+    </div>
+
+    <%= form_for [@hotel, Address.new] do |f| %>
+
+        <div class="field">
+          <%= f.label :country %><br>
+          <%= f.text_field :country %>
+        </div>
+        <div class="field">
+          <%= f.label :state %><br>
+          <%= f.text_field :state %>
+        </div>
+        <div class="field">
+          <%= f.label :city %><br>
+          <%= f.text_field :city %>
+        </div>
+        <div class="field">
+          <%= f.label :street %><br>
+          <%= f.text_field :street %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+    <% end %>
+
+
     <%= f.submit %>
   </div>
 <% end %>

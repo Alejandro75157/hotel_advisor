@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
     @hotel = Hotel.find(params[:hotel_id])
     @comment = @hotel.comments.create!(comment_params)
     @user = current_user
+    @comment.user_id = @user.id
     @comment = @user.comments.create!(comment_params)
 
     respond_to do |format|

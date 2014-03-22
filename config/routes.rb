@@ -2,6 +2,7 @@ HotelAdvisor::Application.routes.draw do
 
   resources :hotels do
     resources :comments
+    resources :addresses
   end
 
   devise_for :users,  :controllers => { :registrations => "users/registrations" }
@@ -10,7 +11,7 @@ HotelAdvisor::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'hotels#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

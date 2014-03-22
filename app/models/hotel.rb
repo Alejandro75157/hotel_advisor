@@ -6,4 +6,5 @@ class Hotel < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
   has_many :comments
+  has_many :addresses
 end
