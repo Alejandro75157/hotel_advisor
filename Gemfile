@@ -35,8 +35,14 @@ group :production do
   gem 'thin'
 end
 
+gem 'haml'
+gem "less-rails"
 gem 'devise'
 gem 'letsrate'
+gem "therubyracer"
+
+gem "twitter-bootstrap-rails"
+gem 'simple_form'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

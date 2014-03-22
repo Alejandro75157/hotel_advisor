@@ -3,7 +3,7 @@
 
 <% @hotels.each do |hotel| %>
 
-        <div class="hotel_item">
+        <div class="hotel_item span6">
           <a href="/hotels/<%= hotel.id %>">
               <img class="main_img" src="<%= hotel.image %>">
           </a>
@@ -29,6 +29,4 @@
 
 <% end %>
 
-<div class="hotel_item">
-    <%= link_to 'New Hotel', new_hotel_path %>
-</div>
+    <a class="btn btn-primary span6" href="/hotels/new">New Hotel</a>
