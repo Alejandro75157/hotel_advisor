@@ -6,7 +6,6 @@ gem 'rails', '4.0.4'
 gem "paperclip", "~> 4.1"
 
 
-
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -31,16 +30,17 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'thin'
+end
+
+gem 'devise'
+gem 'letsrate'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-
-gem 'devise'
-
-gem 'letsrate'
-
 
 end
 
