@@ -40,9 +40,15 @@ gem "less-rails"
 gem 'devise'
 gem 'letsrate'
 gem "therubyracer"
+gem "acts_as_rateable"
 
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
+
+
+group :development, :test do
+  gem 'rspec-rails'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

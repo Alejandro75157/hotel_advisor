@@ -1,11 +1,14 @@
 HotelAdvisor::Application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :hotels do
     resources :comments
     resources :addresses
   end
 
   devise_for :users,  :controllers => { :registrations => "users/registrations" }
+
+  resources :ratings, only: :update
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

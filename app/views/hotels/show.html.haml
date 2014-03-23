@@ -11,12 +11,17 @@
     = @hotel.price_for_room
   #addresses
     %h4 Addresses
-    = render partial: "address", collection: @hotel.addresses, as: :address
+    = render partial: "address_preview", collection: @hotel.addresses, as: :address
 .description.span4
   %p
     %strong Room description:
     = @hotel.room_description
 %br/
+%p Averate rating
+#star
+
+%p Your rating
+#user_star
 %br/
 .buttons
   %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
@@ -35,3 +40,22 @@
       = f.submit "Add comment"
 - else
   %p Please sign in or sign up to be able leave comments here
+
+:javascript
+  $('#star').raty({
+    readOnly: true,
+    score: #{@comment.try(:average_rating)},
+    path: '/assets'
+  });
+
+  $('#user_star').raty({
+    score: #{@rating.try(:score)},
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + #{@rating.try(:id)},
+        type: 'PATCH',
+        data: { score: score }
+      });
+    }
+  });

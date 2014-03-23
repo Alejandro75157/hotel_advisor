@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
+    @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
   end
 
   # GET /comments/1
@@ -29,6 +30,11 @@ class CommentsController < ApplicationController
     @user = current_user
     @comment.user_id = @user.id
     @comment = @user.comments.create!(comment_params)
+
+
+    unless @rating
+      @rating = Rating.create(comment_id: @comment.id, user_id: @current_user.id, score: 0)
+    end
 
     respond_to do |format|
       if @comment.save
