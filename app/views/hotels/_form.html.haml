@@ -19,8 +19,13 @@
   = f.label :price_for_room
   = f.number_field :price_for_room
 
+  #addresses
+    %h5 Add address
+    = render partial: "address_preview", collection: @hotel.addresses, as: :address
   %p
     = f.simple_fields_for :addresses do |builder|
       = render 'address', f: builder
+      %br/
+      = builder.submit
 
   = f.submit

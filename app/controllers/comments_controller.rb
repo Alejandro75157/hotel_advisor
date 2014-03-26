@@ -5,12 +5,12 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
-    @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+  @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
   end
 
   # GET /comments/new
@@ -26,14 +26,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @hotel = Hotel.find(params[:hotel_id])
-    @comment = @hotel.comments.create!(comment_params)
-    @user = current_user
-    @comment.user_id = @user.id
-    @comment = @user.comments.create!(comment_params)
+
+    @comment = @hotel.comments.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.save!
 
 
     unless @rating
-      @rating = Rating.create(comment_id: @comment.id, user_id: @current_user.id, score: 0)
+      @rating = Rating.create(comment_id: @comment.id, user_id: current_user.id, score: 0)
     end
 
     respond_to do |format|

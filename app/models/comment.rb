@@ -1,11 +1,8 @@
 class Comment < ActiveRecord::Base
-  validates_presence_of :body, :user, :hotel
-
   belongs_to :hotel
   belongs_to :user
-  has_many :ratings
+  has_one :rating
 
-  def average_rating
-    ratings.sum(:score) / ratings.size
-  end
+  validates_presence_of :body, :user, :hotel
+  accepts_nested_attributes_for :rating, reject_if: :all_blank
 end

@@ -23,3 +23,6 @@ out/
 gen/
 
 target/
+
+custom_plan.rb
+zeus.json

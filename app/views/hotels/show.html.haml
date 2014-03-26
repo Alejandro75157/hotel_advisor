@@ -18,10 +18,10 @@
     = @hotel.room_description
 %br/
 %p Averate rating
-#star
-
+#st
 %p Your rating
 #user_star
+  
 %br/
 .buttons
   %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
@@ -41,21 +41,3 @@
 - else
   %p Please sign in or sign up to be able leave comments here
 
-:javascript
-  $('#star').raty({
-    readOnly: true,
-    score: #{@comment.try(:average_rating)},
-    path: '/assets'
-  });
-
-  $('#user_star').raty({
-    score: #{@rating.try(:score)},
-    path: '/assets',
-    click: function(score, evt) {
-      $.ajax({
-        url: '/ratings/' + #{@rating.try(:id)},
-        type: 'PATCH',
-        data: { score: score }
-      });
-    }
-  });

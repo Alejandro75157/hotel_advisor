@@ -10,12 +10,16 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
-    @comments = Comment.where(user_id: current_user.id)
+    @comments = Comment.all
+    @hotel = Hotel.find(params[:id])
+
+    # @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
   end
 
   # GET /hotels/new
   def new
     @hotel = Hotel.new
+    @hotel.addresses.create!(address_params)
   end
 
   # GET /hotels/1/edit
@@ -26,7 +30,8 @@ class HotelsController < ApplicationController
   # POST /hotels.json
   def create
     @hotel = Hotel.new(hotel_params)
-    @hotel.addresses.build(address_params)
+    @hotel.save
+    @hotel.addresses.create!(address_params)
 
     respond_to do |format|
       if @hotel.save

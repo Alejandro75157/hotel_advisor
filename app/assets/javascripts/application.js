@@ -15,4 +15,19 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.raty.js
-//= require_tree .
+
+jQuery(function ($) {
+    var stars = $(".star");
+    var bindRaty = function (el) {
+        var score = star.data("score");
+        star.raty({
+            readOnly: true,
+            path: '/assets',
+            score: score
+        });
+    };
+    $.each(stars, function (index, el) {
+        bindRaty($(el));
+    });
+    bindRaty($("#user_rate"));
+});

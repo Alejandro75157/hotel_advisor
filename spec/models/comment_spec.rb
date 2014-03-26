@@ -2,16 +2,8 @@ require 'spec_helper'
 
 describe Comment do
   before :all do
-    @alejandro = User.create(email: "gravidor@gmail.com", password: "12345678", password_confirmation: "12345678", username: "Tom")
-    @paris_hotel = Hotel.create(user: @alejandro, title: "Paris Hotel", breakfast_included: true, room_description: "room_description", price_for_room: 100)
-  end
-
-  after :all do
-    User.delete_all
-    Hotel.delete_all
-    Comment.delete_all
-    Rating.delete_all
-    Address.delete.all
+    @alejandro = build(:alejandro)
+    @paris_hotel = build(:paris_hotel)
   end
 
   it "should not be valid without Hotel" do
@@ -26,16 +18,16 @@ describe Comment do
     Comment.new(user: @alejandro, hotel: @paris_hotel, body: nil).should_not be_valid
   end
 
-  it "should returns average ratings if has one" do
-    comment = Comment.create(user: @alejandro, hotel: @paris_hotel, body: "comment1")
-    rating1 = Rating.create(user: @alejandro, comment: comment, score: 2, default: 0)
-    rating2 = Rating.create(user: @alejandro, comment: comment, score: 2, default: 0)
-    rating2 = Rating.create(user: @alejandro, comment: comment, score: 5, default: 0)
-    comment.average_rating.should be(3)
+
+  it 'should create rating with score 5' do
+    comment = create(:comment, rating_attributes: attributes_for(:rating))
+    comment.rating.score.should eq(3)
   end
 
-  it "should not be valid without 'hotel'" do
-    Address.new(country: 'USA', state: 'Dacota', city: 'New Dacota', stret: 'G.Washington st.', hotel: nil).should_not be_valid
-  end
+  it { expect {create(:comment, rating_attributes: attributes_for(:rating))}.to change(Rating, :count).by(1) }
+
+  it { expect {create(:comment, rating_attributes: attributes_for(:rating, score: nil))}.to_not change(Rating, :count) }
+
+  it { expect {create(:comment)}.to_not change(Rating, :count) }
 
 end

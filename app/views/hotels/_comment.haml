@@ -1,4 +1,10 @@
 %p
-  %strong= comment.user_id
+  %strong 
+    =comment.user.username
+
+  %p
+    Average rating
+    .star{"data-score" => comment.average_rating }
   = comment.body
+
   = link_to 'Destroy', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }
