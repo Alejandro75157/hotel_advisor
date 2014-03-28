@@ -18,14 +18,19 @@
   = f.file_field :image
   = f.label :price_for_room
   = f.number_field :price_for_room
+  = f.simple_fields_for :address do |a|
+    = a.label :country
+    = a.text_field :country
+    = a.label :state
+    = a.text_field :state
+    = a.label :city
+    = a.text_field :city
+    = a.label :street
+    = a.text_field :street
 
   #addresses
     %h5 Add address
     = render partial: "address_preview", collection: @hotel.addresses, as: :address
-  %p
-    = f.simple_fields_for :addresses do |builder|
-      = render 'address', f: builder
-      %br/
-      = builder.submit
+
 
   = f.submit

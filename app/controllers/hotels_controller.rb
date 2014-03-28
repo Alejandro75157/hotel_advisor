@@ -19,7 +19,7 @@ class HotelsController < ApplicationController
   # GET /hotels/new
   def new
     @hotel = Hotel.new
-    @hotel.addresses.create!(address_params)
+    @hotel.addresses.build
   end
 
   # GET /hotels/1/edit
@@ -30,8 +30,13 @@ class HotelsController < ApplicationController
   # POST /hotels.json
   def create
     @hotel = Hotel.new(hotel_params)
+    @hotel.user_id = current_user.id
     @hotel.save
-    @hotel.addresses.create!(address_params)
+    @hotel.addresses.new(params[:addresses_attributes])
+    @hotel.addresses.hotel_id = @hotel.id
+    @hotel.addresses.save!
+
+
 
     respond_to do |format|
       if @hotel.save
@@ -76,10 +81,11 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:title, :breakfast_included, :room_description, :image, :price_for_room, :addresses)
+      params.require(:hotel).permit(:title, :breakfast_included, :room_description, :image, :user_id,
+                                    :price_for_room, addresses_attributes: [:country, :state, :city, :street, :hotel_id])
     end
 
-    def address_params
-      params.require(:hotel).require(:addresses).permit(:country, :state, :city, :street)
-    end
+    # def address_params
+    #  params.require(:hotel).require(:addresses).permit(:country, :state, :city, :street)
+    # end
 end

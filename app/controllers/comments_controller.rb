@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    @comment.rating.build
   end
 
   # GET /comments/1/edit
@@ -30,6 +31,10 @@ class CommentsController < ApplicationController
     @comment = @hotel.comments.new(comment_params)
     @comment.user_id = current_user.id
     @comment.save!
+    @comment.rating.new(params[:rating_attributes])
+    @comment.rating.comment_id = @comment.id
+    @comment.rating.user_id = current_user.id
+    @comment.rating.save
 
 
     unless @rating
@@ -79,6 +84,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:user_id, :hotel_id, :body)
+      params.require(:comment).permit(:user_id, :hotel_id, :body, rating_attributes: [:score, :comment_id, :user_id])
     end
 end

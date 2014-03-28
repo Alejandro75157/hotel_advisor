@@ -12,6 +12,7 @@ class Hotel < ActiveRecord::Base
 
   accepts_nested_attributes_for :addresses, reject_if: :all_blank
 
+
   def average_rating
     scores = comments.map {|comment| comment.rating.score }
     scores.blank? ? 0 : (scores.sum() / comments.size)
