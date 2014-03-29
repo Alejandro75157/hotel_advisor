@@ -1,11 +1,12 @@
-%p
-  %strong 
-    =comment.user.username
+.span5
+  %h4
+    = comment.user.username
 
   %p
-    Average rating
-    .star
-      -# {"data-score" => comment.average_rating }
-  = comment.body
-
-  = link_to 'Destroy', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }
+    %h5 Comment score
+    .star{"data-score" => comment.rating.score }
+  %p
+    %h5 Comment body
+    = comment.body
+  %p
+    = link_to 'Destroy', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }

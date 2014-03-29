@@ -1,7 +1,7 @@
 class Hotel < ActiveRecord::Base
   belongs_to :user
   has_many :comments
-  has_many :addresses
+  has_many :addresses 
 
   has_attached_file :image, :styles => { :small => "150x150>" }
 

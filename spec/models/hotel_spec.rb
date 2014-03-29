@@ -4,7 +4,9 @@ describe Hotel do
   it "should returns average ratings if has one" do
     paris_hotel = create(:paris_hotel)
     3.times do
-      create(:comment, hotel: paris_hotel, user: paris_hotel.user, rating_attributes: attributes_for(:rating))
+      comment = create(:comment, hotel: paris_hotel, user: paris_hotel.user)
+      comment.rating = Rating.new score: 3, comment: comment
+      comment.save
     end
     paris_hotel.average_rating.should be(3)
   end

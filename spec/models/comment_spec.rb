@@ -18,12 +18,6 @@ describe Comment do
     Comment.new(user: @alejandro, hotel: @paris_hotel, body: nil).should_not be_valid
   end
 
-
-  it 'should create rating with score 5' do
-    comment = create(:comment, rating_attributes: attributes_for(:rating))
-    comment.rating.score.should eq(3)
-  end
-
   it { expect {create(:comment, rating_attributes: attributes_for(:rating))}.to change(Rating, :count).by(1) }
 
   it { expect {create(:comment, rating_attributes: attributes_for(:rating, score: nil))}.to_not change(Rating, :count) }

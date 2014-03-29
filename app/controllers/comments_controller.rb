@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-  @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
+    @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
   end
 
   # GET /comments/new
@@ -27,26 +27,17 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @hotel = Hotel.find(params[:hotel_id])
-
     @comment = @hotel.comments.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.save!
-    @comment.rating.new(params[:rating_attributes])
-    @comment.rating.comment_id = @comment.id
-    @comment.rating.user_id = current_user.id
-    @comment.rating.save
-
-
-    unless @rating
-      @rating = Rating.create(comment_id: @comment.id, user_id: current_user.id, score: 0)
-    end
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @hotel, notice: 'Comment was successfully created.' }
+        flash[:success] = 'Comment was successfully created.'
+        format.html { redirect_to @hotel }
         format.json { render action: 'show', status: :created, location: @comment }
       else
-        format.html { render action: 'new' }
+        flash[:error] = 'Failed to create comment.'
+        format.html { redirect_to @hotel }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -71,19 +62,19 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to hotels_url }
+      format.html { redirect_to hotel_path(params[:hotel_id]) }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:user_id, :hotel_id, :body, rating_attributes: [:score, :comment_id, :user_id])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:user_id, :hotel_id, :body, rating_attributes: [:score])
+  end
 end

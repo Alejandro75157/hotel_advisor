@@ -10,10 +10,10 @@ class HotelsController < ApplicationController
   # GET /hotels/1
   # GET /hotels/1.json
   def show
-    @comments = Comment.all
     @hotel = Hotel.find(params[:id])
-
-    # @rating = Rating.where(comment_id: @comment.id, user_id: @current_user.id).first
+    @comments = Comment.where hotel: @hotel
+    @new_comment = Comment.new hotel: @hotel
+    @new_comment.build_rating
   end
 
   # GET /hotels/new
@@ -32,10 +32,7 @@ class HotelsController < ApplicationController
     @hotel = Hotel.new(hotel_params)
     @hotel.user_id = current_user.id
     @hotel.save
-    @hotel.addresses.new(params[:addresses_attributes])
-    @hotel.addresses.hotel_id = @hotel.id
-    @hotel.addresses.save!
-
+    @hotel.addresses.create(params[:addresses_attributes])
 
 
     respond_to do |format|

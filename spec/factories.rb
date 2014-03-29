@@ -23,7 +23,6 @@ FactoryGirl.define do
   end
 
   factory :rating do
-    user
     comment
     score 3
   end

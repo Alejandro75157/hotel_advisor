@@ -17,17 +17,21 @@
 //= require jquery.raty.js
 
 jQuery(function ($) {
-    var stars = $(".star");
-    var bindRaty = function (el) {
-        var score = star.data("score");
-        star.raty({
+    $.each($(".star"), function (index, el) {
+        var element = $(el);
+        element.raty({
             readOnly: true,
             path: '/assets',
-            score: score
+            score: element.data("score")
         });
-    };
-    $.each(stars, function (index, el) {
-        bindRaty($(el));
     });
-    bindRaty($("#user_rate"));
+    $.each($("#star_save"), function (index, el) {
+        var element = $(el);
+        element.raty({
+            path: '/assets',
+            click: function(score, evt) {
+                $(this).next().val(score);
+            }
+        });
+    });
 });
