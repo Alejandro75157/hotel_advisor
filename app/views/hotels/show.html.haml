@@ -1,46 +1,55 @@
 %p#notice= notice
 %p.title
   = @hotel.title
-%img.item_img.span7{:src => @hotel.image}/
-.base_info.span3
-  %p
-    %strong Breakfast included:
-    = @hotel.breakfast_included
-  %p
-    %strong Price for room:
+
+#hotel_star{ "data-score" => @hotel.average_rating }
+%img.item_img.span8{:src => @hotel.image}/
+.base_info.span4
+  %h5
+    - if @hotel.breakfast_included?
+      Breakfast included
+    -else
+      Breakfast not included
+  %h5
+    Price for room:
+    $
     = @hotel.price_for_room
   #addresses
     %h4 Addresses
     = render partial: "address_preview", collection: @hotel.addresses, as: :address
 .description.span4
+
+  %h5 Room description
   %p
-    %strong Room description:
     = @hotel.room_description
 %br/
-%p Averate rating
-#st
-%p Your rating
-#user_star
+
+
+
   
 %br/
 .buttons
   %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
-  %a.btn{:href => "/"} Back
+  %a.btn{:href => "/hotels/"} Back
 %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
-%h2 Comments
+%h2.comments_label Comments
 #comments
+
+  %div
+    - if user_signed_in?
+      = simple_form_for [@hotel, @new_comment] do |f|
+        .field
+          %h5.new_comment
+            New comment
+          = f.text_area :body
+
+        .actions
+          = f.simple_fields_for :rating do |a|
+            #star_save
+            = a.hidden_field :score
+          = f.submit "Add comment"
+    - else
+      %p.comment_block Please sign in or sign up to be able leave comments here
+
   = render partial: "comment", collection: @hotel.comments, as: :comment
-- if user_signed_in?
-  = simple_form_for [@hotel, @new_comment] do |f|
-    .field
-      = f.label :body, "New comment"
-      %br/
-      = f.text_area :body
-      = f.simple_fields_for :rating do |a|
-        #star_save
-        = a.hidden_field :score
-    .actions
-      = f.submit "Add comment"
-- else
-  %p Please sign in or sign up to be able leave comments here
 

@@ -1,0 +1,10 @@
+- content_for :hotels_link do
+  %h4.hotels_link
+    #{link_to 'See all hotels', hotels_path}
+
+.jcarousel
+  %ul
+    = render partial: "ordered_hotel", collection: @ordered_hotels, as: :hotel
+
+  %a.jcarousel-prev{"data-jcarouselcontrol" => "true", :href => "#"} ‹
+  %a.jcarousel-next{"data-jcarouselcontrol" => "true", :href => "#"} ›

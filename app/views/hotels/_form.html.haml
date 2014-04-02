@@ -18,7 +18,7 @@
   = f.file_field :image
   = f.label :price_for_room
   = f.number_field :price_for_room
-  = f.simple_fields_for :address do |a|
+  = f.simple_fields_for :addresses do |a|
     = a.label :country
     = a.text_field :country
     = a.label :state

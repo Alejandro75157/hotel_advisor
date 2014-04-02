@@ -1,0 +1,10 @@
+%li
+  %div.box.span8
+    %a{href: "/hotels/#{hotel.id}"}
+      %img.front_img.span8{:src => hotel.image}
+    %div.inner_box.span8
+      %h4.main_title
+        = hotel.title
+      %h4.main_price
+        $
+        = hotel.price_for_room

@@ -1,9 +1,9 @@
 class Hotel < ActiveRecord::Base
   belongs_to :user
   has_many :comments
-  has_many :addresses 
+  has_many :addresses, dependent: :destroy, inverse_of: :hotel
 
-  has_attached_file :image, :styles => { :small => "150x150>" }
+  has_attached_file :image, :styles => {:small => "150x150>"}
 
   validates_presence_of :user, :room_description, :title
   validates_attachment_presence :image
@@ -12,9 +12,9 @@ class Hotel < ActiveRecord::Base
 
   accepts_nested_attributes_for :addresses, reject_if: :all_blank
 
-
   def average_rating
-    scores = comments.map {|comment| comment.rating.score }
-    scores.blank? ? 0 : (scores.sum() / comments.size)
+    return 0 if comments.blank?
+    sum = comments.map { |comment| comment.rating.score }.sum(:score)
+    sum / comments.count
   end
 end

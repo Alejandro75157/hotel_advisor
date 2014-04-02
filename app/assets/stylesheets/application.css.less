@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+.jcarousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.jcarousel ul {
+  width: 20000em;
+  position: relative;
+
+  /* Optional, required in this case since it's a <ul> element */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jcarousel li {
+  /* Required only for block elements like <li>'s */
+  float: left;
+}
+
+.jcarousel-prev {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-right: -30px;
+  margin-top: -36px;
+  text-decoration: none !important;
+  font: 64px/72px Arial, sans-serif;
+}
+.jcarousel-next {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: -30px;
+  margin-top: -36px;
+  text-decoration: none !important;
+  font: 64px/72px Arial, sans-serif;
+}
+
+.box {
+  margin-left: 0 !important;
+
+  .front_img {
+    height: 465px;
+    margin-left: 0 !important;
+  }
+  .inner_box {
+    margin-left: 0 !important;
+    border-top: #999 1px solid;
+    background: rgba(45, 45, 45, 0.50);
+    margin-top: -41px;
+    .main_title {
+      float: left;
+      color: #F7F7F7;
+      margin-left: 3px;
+    }
+    .main_price {
+      float: right;
+      color: #F7F7F7;
+      margin-right: 3px;
+    }
+  }
+}
+
+
+
+

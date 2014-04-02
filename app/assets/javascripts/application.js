@@ -15,16 +15,22 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.raty.js
+//= require jquery.jcarousel.js
+//= require modernizr.js
 
-jQuery(function ($) {
-    $.each($(".star"), function (index, el) {
+jQuery(document).on('page:change', function () {
+    var $ = jQuery;
+    var bindRaty = function(index, el) {
         var element = $(el);
         element.raty({
             readOnly: true,
             path: '/assets',
             score: element.data("score")
         });
-    });
+    };
+    $.each($(".star"),bindRaty);
+    $.each($("#hotel_star"),bindRaty);
+
     $.each($("#star_save"), function (index, el) {
         var element = $(el);
         element.raty({
@@ -34,4 +40,27 @@ jQuery(function ($) {
             }
         });
     });
+
+
+    (function($, Modernizr) {
+        $(function() {
+            $('.jcarousel').jcarousel({
+                wrap: 'circular',
+                transitions: Modernizr.csstransitions ? {
+                    transforms:   Modernizr.csstransforms,
+                    transforms3d: Modernizr.csstransforms3d,
+                    easing:       'ease'
+                } : false
+            });
+
+            $('.jcarousel-prev').jcarouselControl({
+                target: '-=1'
+            });
+
+            $('.jcarousel-next').jcarouselControl({
+                target: '+=1'
+            });
+        });
+    })(jQuery, Modernizr);
+
 });

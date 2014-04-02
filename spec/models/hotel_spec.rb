@@ -38,6 +38,10 @@ describe Hotel do
   it { expect {create(:hotel, addresses_attributes: [attributes_for(:address)])}.to change(Address, :count).by(1) }
 
   it { expect {create(:hotel, addresses_attributes: [attributes_for(:address), attributes_for(:address)])}.to change(Address, :count).by(2) }
+
+  it "should returns average rating '0' if has no comments" do
+    paris_hotel = create(:paris_hotel)
+    paris_hotel.average_rating.should be(0)
+  end
+
 end
-
-

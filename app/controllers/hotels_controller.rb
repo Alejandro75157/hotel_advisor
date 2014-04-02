@@ -4,7 +4,7 @@ class HotelsController < ApplicationController
   # GET /hotels
   # GET /hotels.json
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.all.sort_by  { |hotel| -hotel.id}
   end
 
   # GET /hotels/1
@@ -12,8 +12,10 @@ class HotelsController < ApplicationController
   def show
     @hotel = Hotel.find(params[:id])
     @comments = Comment.where hotel: @hotel
+    @comments.sort_by  { |comment| -comment.id}
     @new_comment = Comment.new hotel: @hotel
     @new_comment.build_rating
+    @current_user_id = current_user.id
   end
 
   # GET /hotels/new
@@ -24,15 +26,14 @@ class HotelsController < ApplicationController
 
   # GET /hotels/1/edit
   def edit
+
   end
 
   # POST /hotels
   # POST /hotels.json
   def create
     @hotel = Hotel.new(hotel_params)
-    @hotel.user_id = current_user.id
-    @hotel.save
-    @hotel.addresses.create(params[:addresses_attributes])
+    @hotel.user = current_user
 
 
     respond_to do |format|

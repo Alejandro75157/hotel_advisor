@@ -9,7 +9,7 @@
     - flash.each do |key, value|
       = content_tag :div, value, class: "flash #{key}"
     %header
-      .board
+      .header_board
         %a.mainpage{:href => "/"} Hotel adviser
         #user_nav
           - if user_signed_in?
@@ -20,9 +20,15 @@
           - else
             = link_to 'Sign up', new_user_registration_path
             = link_to 'Login', new_user_session_path
+
+    = yield :hotels_link
     .board
       = yield
     %footer
-      .board
-        %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
-        %p HotelAdviser 2014
+
+
+
+      .footer_board
+        %hr.footer_line{:align => "center", :color => "#f8c000", :size => "1", :width => "100%"}/
+        %p
+          HotelAdviser 2014

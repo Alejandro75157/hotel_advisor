@@ -1,12 +1,11 @@
-.span5
-  %h4
-    = comment.user.username
+.comment_ready.span7
+  .inner_comment_ready
+    %h4.comment_username
+      = comment.user.username
 
-  %p
-    %h5 Comment score
     .star{"data-score" => comment.rating.score }
-  %p
-    %h5 Comment body
-    = comment.body
-  %p
-    = link_to 'Destroy', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }
+    %hr
+    %p
+      = comment.body
+  - if comment.user_id == current_user.id
+    = link_to '✕', hotel_comment_path(@hotel, comment), method: :delete, data: { confirm: 'Are you sure?' }
