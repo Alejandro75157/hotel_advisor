@@ -2,8 +2,8 @@ HotelAdvisor::Application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
   resources :hotels do
-    resources :comments
-    resources :addresses
+    resources :comments, only: [:create, :new, :destroy]
+    resources :addresses, only: [:create,:new, :edit, :update, :destroy]
   end
 
   devise_for :users,  :controllers => { :registrations => "users/registrations" }

@@ -16,6 +16,8 @@ FactoryGirl.define do
     image Rack::Test::UploadedFile.new(Rails.root + "spec/images/hotel.jpg", "image/jpg")
   end
 
+
+
   factory :comment do
     user
     hotel
