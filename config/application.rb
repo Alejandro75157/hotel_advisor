@@ -17,6 +17,8 @@ module HotelAdvisor
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
+    config.serve_static_assets = true
+    
     config.assets.precompile += [
         'hotels.css.less',
         'application.css.less',
