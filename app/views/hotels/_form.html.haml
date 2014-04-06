@@ -1,32 +1,69 @@
 = simple_form_for(@hotel, :html => { :multipart => true}) do |f|
-  - if @hotel.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@hotel.errors.count, "error")
-        prohibited this hotel from being saved:
-      %ul
-        - @hotel.errors.full_messages.each do |msg|
-          %li= msg
+  .row
+    .span8
+      = f.label :title
+    .span3
+      = f.text_field :title
+    .span2
+      = f.full_error :title
 
-  = f.label :title
-  = f.text_field :title, error_html: { id: 'title_error'}
-  = f.label :breakfast_included
-  = f.check_box :breakfast_included
-  = f.label :room_description
-  = f.text_area :room_description, error_html: { id: 'room_description_error'}
-  = f.label :image
-  = f.file_field :image
-  = f.label :price_for_room
-  = f.number_field :price_for_room
+  .row
+    .span8
+      = f.label :breakfast_included
+    .span3
+      = f.check_box :breakfast_included
+
+  .row
+    .span8
+      = f.label :room_description
+    .span3
+      = f.text_area :room_description
+    .span4
+      = f.full_error :room_description
+
+  .row
+    .span3
+      = f.file_field :image
+    .span2
+      = f.full_error :image
+
+  .row
+    .span8
+      = f.label :price_for_room
+    .span3
+      = f.number_field :price_for_room
+    .span2
+      = f.full_error :price_for_room
+
   = f.simple_fields_for :addresses do |a|
-    = a.label :country
-    = a.text_field :country
-    = a.label :state
-    = a.text_field :state
-    = a.label :city
-    = a.text_field :city
-    = a.label :street
-    = a.text_field :street
+    .row
+      .span8
+        = a.label :country
+      .span3
+        = a.text_field :country
+      .span2
+        = a.full_error :country
+    .row
+      .span8
+        = a.label :state
+      .span3
+        = a.text_field :state
+      .span2
+        = a.full_error :state
+    .row
+      .span8
+        = a.label :city
+      .span3
+        = a.text_field :city
+      .span2
+        = a.full_error :city
+    .row
+      .span8
+        = a.label :street
+      .span3
+        = a.text_field :street
+      .span2
+        = a.full_error :street
 
   #addresses
     %h5 Add address

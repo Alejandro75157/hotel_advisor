@@ -39,11 +39,9 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.save
-        flash[:success] = 'Hotel was successfully created.'
         format.html { redirect_to @hotel}
         format.json { render action: 'show', status: :created, location: @hotel }
       else
-        flash[:error] = 'Failed to create hotel.'
         format.html { render action: 'new' }
         format.json { render json: @hotel.errors, status: :unprocessable_entity }
       end

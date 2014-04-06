@@ -17,7 +17,6 @@
 //= require jquery.raty.js
 //= require jquery.jcarousel.js
 //= require modernizr.js
-//= require jquery.validate.js
 
 jQuery(document).on('page:change', function () {
     var $ = jQuery;
@@ -63,21 +62,4 @@ jQuery(document).on('page:change', function () {
             });
         });
     })(jQuery, Modernizr);
-
-    $('form').validate({
-        errorPlacement: function(error, element) {
-            //console.log(element.attr('name'));
-        },
-        highlight: function(element,errorClass,validClass){
-            $(element).removeClass(validClass).addClass(errorClass);
-            $(element).addClass('error');
-
-        },
-        unhighlight: function(element,errorClass,validClass){
-            $(element).removeClass(errorClass).addClass(validClass);
-            $(element).addClass('right');
-
-        }
-    }).form();
-
 });
