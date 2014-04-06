@@ -18,7 +18,7 @@ module HotelAdvisor
     # config.time_zone = 'Central Time (US & Canada)'
 
     config.serve_static_assets = true
-    
+
     config.assets.precompile += [
         'hotels.css.less',
         'application.css.less',
