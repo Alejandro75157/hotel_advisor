@@ -6,8 +6,6 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    - flash.each do |key, value|
-      = content_tag :div, value, class: "flash #{key}"
     %header
       .header_board
         %a.mainpage{:href => "/"} Hotel adviser
@@ -20,6 +18,10 @@
           - else
             = link_to 'Sign up', new_user_registration_path
             = link_to 'Login', new_user_session_path
+
+    #notice
+      - flash.each do |key, value|
+        = content_tag :div, value, class: "flash #{key}"
 
     = yield :hotels_link
     .board

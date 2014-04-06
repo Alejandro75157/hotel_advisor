@@ -14,9 +14,10 @@
         - if hotel.breakfast_included?
           =image_tag asset_path('breakfast.png'), :size => '16x16'
         |
-      %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
-      %p.manipulate_hotel
-        = link_to 'Edit', edit_hotel_path(hotel)
-        |
-      %p.manipulate_hotel= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' }
+      - if hotel.user_id == current_user.id
+        %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
+        %p.manipulate_hotel
+          = link_to 'Edit', edit_hotel_path(hotel)
+          |
+        %p.manipulate_hotel= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' }
 

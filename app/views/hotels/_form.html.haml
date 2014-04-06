@@ -9,11 +9,11 @@
           %li= msg
 
   = f.label :title
-  = f.text_field :title
+  = f.text_field :title, error_html: { id: 'title_error'}
   = f.label :breakfast_included
   = f.check_box :breakfast_included
   = f.label :room_description
-  = f.text_area :room_description
+  = f.text_area :room_description, error_html: { id: 'room_description_error'}
   = f.label :image
   = f.file_field :image
   = f.label :price_for_room
