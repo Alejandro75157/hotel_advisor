@@ -1,6 +1,6 @@
 class Hotel < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy, inverse_of: :hotel
   has_many :addresses, dependent: :destroy, inverse_of: :hotel
 
   has_attached_file :image, :styles => {:small => "150x150>"}
