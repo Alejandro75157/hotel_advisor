@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'launchy'
+  gem 'zeus'
 end
 
 group :doc do

@@ -29,20 +29,15 @@ describe "Comments" do
 
     it "Deletes a comment" do
       @hotel = create(:hotel, user: @user)
-      puts "Original is => hotel_id: #{@hotel.id} user_id: #{@user.id}"
-      c_params = attributes_for(:comment)
-      c_params[:hotel] = @hotel
-      c_params[:user] = @user
+      comment_params = attributes_for(:comment)
+      comment_params[:hotel] = @hotel
+      comment_params[:user] = @user
 
-      puts c_params
-      c = Comment.new(c_params)
-      c.build_rating
-      c.save
-
-      puts "Comment has => comment_id: #{c.id} hotel_id: #{c.hotel.id} user_id: #{c.user.id}"
+      comment = Comment.new(comment_params)
+      comment.build_rating
+      comment.save
 
       visit "/hotels/#{@hotel.id}"
-      save_and_open_page
       expect{
           click_link '✕'
       }.to change(@hotel.comments,:count).by(-1)

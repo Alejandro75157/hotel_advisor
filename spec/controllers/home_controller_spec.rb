@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-RSpec.configure {|c| c.before { expect(controller).not_to be_nil }}
-
 describe HomeController do
   describe "GET #index" do
     it "responds successfully with an HTTP 200 status code" do

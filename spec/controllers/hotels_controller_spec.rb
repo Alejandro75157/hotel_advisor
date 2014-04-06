@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-RSpec.configure {|c| c.before { expect(controller).not_to be_nil }}
-
 describe HotelsController do
   login_user
 
