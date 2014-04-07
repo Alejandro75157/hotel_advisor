@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - "2.1.1"
 env:
-  - TAG_FILTER=~js DB=postgres RAILS_ENV=test
   - TAG_FILTER=js DB=postgres RAILS_ENV=test
 install: touch ~/do_not_run_bundle
 before_script:
