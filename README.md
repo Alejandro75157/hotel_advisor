@@ -1,7 +1,6 @@
 == README
 
-[![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)%5D(https://travis-ci.org/danhaywood/java-testsupport)
-
+![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)
 1. Create super role.
 
     $ sudo su postgres -c psql
