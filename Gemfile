@@ -46,12 +46,12 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
 gem 'database_cleaner'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'capybara'
-  gem 'faker'
   gem 'launchy'
   gem 'zeus'
 end
