@@ -1,5 +1,6 @@
 == README
 
+[![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)%5D(https://travis-ci.org/danhaywood/java-testsupport)
 
 1. Create super role.
 
