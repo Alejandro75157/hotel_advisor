@@ -8,13 +8,13 @@
 
 1. Create super role.
 
-     > $ sudo su postgres -c psql
+     > $ sudo su postgres -c psql;
      > postgres=# CREATE ROLE hotel_advisor SUPERUSER LOGIN;
      > postgres=# \q
 
 2. Prepare databases
 
-     > bundle exec rake db:create:all
+     > bundle exec rake db:create:all;
      > bundle exec rake db:migrate
 
 3. Populate dev DB.
@@ -27,5 +27,5 @@
 
 ### RSPEC
 
-     > bundle exec rake db:test:prepare
+     > bundle exec rake db:test:prepare;
      > bundle exec rspec spec
