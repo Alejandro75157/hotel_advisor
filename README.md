@@ -1,10 +1,10 @@
 ## README
 
-===
+
 ![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)
 
 
-===
+
 
 1. Create super role.
 
