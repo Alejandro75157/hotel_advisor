@@ -18,6 +18,7 @@ module HotelAdvisor
     # config.time_zone = 'Central Time (US & Canada)'
 
     config.serve_static_assets = true
+    config.active_record.schema_format = :sql
 
     config.assets.precompile += [
         'hotels.css.less',
