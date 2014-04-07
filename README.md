@@ -1,9 +1,10 @@
-== README
+## README
 
 ===
 ![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)
 
 
+===
 
 1. Create super role.
 
@@ -23,8 +24,7 @@
 4. Run server
 
     rails server -b 0.0.0.0 -p 3000 -e development
-
-=== RSPEC
+### RSPEC
 
     bundle exec rake db:test:prepare
     bundle exec rspec spec
