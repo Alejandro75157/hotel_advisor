@@ -20,7 +20,7 @@
 
     rails server -b 0.0.0.0 -p 3000 -e development
 
-### RSPEC
+=== RSPEC
 
     bundle exec rake db:test:prepare
     bundle exec rspec spec
