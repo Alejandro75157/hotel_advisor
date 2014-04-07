@@ -48,9 +48,9 @@ gem 'simple_form'
 gem 'database_cleaner'
 gem 'faker'
 gem 'travis'
+gem 'rspec-rails'
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'factory_girl'
   gem 'capybara'
   gem 'launchy'
