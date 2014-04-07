@@ -1,9 +1,10 @@
 language: ruby
 rvm:
   - "2.1.1"
-env:
-  - TAG_FILTER=js DB=postgres RAILS_ENV=test
-install: touch ~/do_not_run_bundle
 before_script:
-  - "./script/travis/setup_database.sh"
-script: "bundle exec rspec spec --tag $TAG_FILTER && sleep 1"
+  - psql -c 'CREATE ROLE hotel_advisor SUPERUSER LOGIN;' -U postgres
+  - cp config/database.travis.yml config/database.yml
+script:
+  - bundle exec rake db:create:all
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec
