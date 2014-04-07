@@ -4,7 +4,7 @@
 ![Build Status](https://travis-ci.org/danhaywood/java-testsupport.png?branch=master)
 
 
-===
+### Installing
 
 1. Create super role.
 
