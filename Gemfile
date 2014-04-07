@@ -45,11 +45,11 @@ gem "acts_as_rateable"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
+gem 'database_cleaner'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl'
-  gem 'database_cleaner'
   gem 'capybara'
   gem 'faker'
   gem 'launchy'
