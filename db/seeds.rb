@@ -24,7 +24,7 @@ user_times.times do
     image_path = files[Random.rand(files.count)]
     hotel = Hotel.new(user: user,
                       title: Faker::Name.title,
-                      image: File.new(image_path, "image/jpg"),
+                      image: File.new(image_path),
                       breakfast_included: true,
                       room_description: Faker::Lorem.paragraph(2),
                       price_for_room: Random.rand(100))

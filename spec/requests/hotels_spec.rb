@@ -13,7 +13,7 @@ describe "Hotels" do
           fill_in 'Title', with: "John Hotel"
           check('Breakfast included')
           fill_in 'Room description', with: "Room description"
-          attach_file('Image', Rails.root + 'spec/images/hotel.jpg')
+          attach_file('hotel_image', Rails.root + 'spec/images/hotel.jpg')
           fill_in 'Price for room', with: 100
           fill_in 'Country', with: "Countryt"
           fill_in 'State', with: "Statet"
@@ -22,7 +22,6 @@ describe "Hotels" do
           click_button "Create Hotel"
         end
       }.to change(Hotel, :count).by(1)
-      page.should have_content "Hotel was successfully created."
       page.should have_content "John Hotel"
       page.should have_content "$ 100"
       page.should have_content "Countryt"
@@ -40,7 +39,7 @@ describe "Hotels" do
           fill_in 'Title', with: nil
           check('Breakfast included')
           fill_in 'Room description', with: "Room description"
-          attach_file('Image', Rails.root + 'spec/images/hotel.jpg')
+          attach_file('hotel_image', Rails.root + 'spec/images/hotel.jpg')
           fill_in 'Price for room', with: 100
           fill_in 'Country', with: "Countryt"
           fill_in 'State', with: "Statet"
