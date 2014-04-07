@@ -47,6 +47,7 @@ gem 'simple_form'
 
 gem 'database_cleaner'
 gem 'faker'
+gem 'travis'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -73,6 +74,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
-ruby "2.1.1"
