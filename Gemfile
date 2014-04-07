@@ -48,6 +48,7 @@ gem 'simple_form'
 gem 'database_cleaner'
 gem 'faker'
 gem 'travis'
+gem 'rspec'
 gem 'rspec-rails'
 
 group :development, :test do
