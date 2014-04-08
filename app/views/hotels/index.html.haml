@@ -5,15 +5,17 @@
     %a{:href => "/hotels/#{hotel.id}"}
       %img.main_img{:src => hotel.image}/
     .inner_info
-      %p.title
-        %a{:href => "/hotels/#{hotel.id}"}
-          = hotel.title
-      %p.price
-        Price: $#{hotel.price_for_room}
-      %p.breakfast
-        - if hotel.breakfast_included?
-          =image_tag asset_path('breakfast.png'), :size => '16x16'
-        |
+      .hotel_inner_left
+        %p.title
+          %a{:href => "/hotels/#{hotel.id}"}
+            = hotel.title
+      .hotel_inner_right
+        %p.price
+          Price: $#{hotel.price_for_room}
+        %p.breakfast
+          - if hotel.breakfast_included?
+            =image_tag asset_path('breakfast.png'), :size => '16x16'
+          |
       - if hotel.user_id == current_user.id
         %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
         %p.manipulate_hotel

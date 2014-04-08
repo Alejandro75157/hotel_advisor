@@ -1,6 +1,7 @@
 HotelAdvisor::Application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
+  get '/my_hotels' => 'hotels#user_index'
   resources :hotels do
     resources :comments, only: [:create, :new, :destroy]
   end

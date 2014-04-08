@@ -1,11 +1,15 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:index, :user_index, :new, :show, :edit, :update, :destroy]
 
   # GET /hotels
   # GET /hotels.json
   def index
     @hotels = Hotel.all.sort_by  { |hotel| -hotel.id}
+  end
+
+  def user_index
+    @hotels = Hotel.where( user: current_user).all.sort_by  { |hotel| -hotel.id}
   end
 
   # GET /hotels/1

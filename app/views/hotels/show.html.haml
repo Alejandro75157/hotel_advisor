@@ -26,11 +26,11 @@
 
 
 
-  
-%br/
-.buttons
-  %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
-  %a.btn{:href => "/hotels/"} Back
+- if @hotel.user_id == current_user.id
+  %br/
+  .buttons
+    %a.btn{:href => "/hotels/#{@hotel.id}/edit "} Edit
+    %a.btn{:href => "/hotels/"} Back
 %hr{:align => "center", :color => "#ddd", :size => "1", :width => "100%"}/
 %h2.comments_label Comments
 #comments

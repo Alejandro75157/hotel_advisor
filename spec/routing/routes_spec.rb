@@ -9,6 +9,13 @@ describe "routing to hotels" do
                                  )
   end
 
+  it "routes /hotels user_index" do
+    expect(:get => "/my_hotels").to route_to(
+                                     :controller => "hotels",
+                                     :action => "user_index"
+                                 )
+  end
+
   it "routes /hotels create" do
     expect(:post => "/hotels").to route_to(
                                      :controller => "hotels",

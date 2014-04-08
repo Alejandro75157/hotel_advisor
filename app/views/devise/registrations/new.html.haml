@@ -29,4 +29,6 @@
     .span4
       = f.full_error :password_confirmation
   %div= f.submit "Sign up"
-= render "devise/shared/links"
+
+.edit_links
+  = render "devise/shared/links"

@@ -8,4 +8,6 @@
     .span4
       = f.full_error :email
   %div= f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+
+.edit_links
+  = render "devise/shared/links"

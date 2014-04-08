@@ -10,16 +10,20 @@
       .header_board
         %a.mainpage{:href => "/"} Hotel adviser
         #user_nav
+          = link_to 'All hotels', hotels_path, class: "hotels_link"
+          |
+          = link_to 'My hotels', my_hotels_path, class: "hotels_link"
+          |
           - if user_signed_in?
-            Logged in as
             %strong= current_user.username
             = link_to 'Edit profile', edit_user_registration_path
-            = link_to 'Logout', destroy_user_session_path, method: :delete
+            = link_to 'Sign out', destroy_user_session_path, method: :delete
           - else
             = link_to 'Sign up', new_user_registration_path
-            = link_to 'Login', new_user_session_path
+            = link_to 'Sign in', new_user_session_path
 
-    = yield :hotels_link
+
+
     .board
       = yield
     %footer
